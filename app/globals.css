@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — Tailwind v4 @theme
+   ============================================================ */
+@theme {
+  /* Color palette */
+  --color-bg: #080808;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e2c06e;
+  --color-gold-dark: #a07830;
+  --color-warm: #f0ede8;
+  --color-warm-muted: #a09d98;
+  --color-surface: #111111;
+  --color-surface-2: #1a1a1a;
+  --color-border: rgba(201, 168, 76, 0.15);
+
+  /* Typography */
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-serif: var(--font-dm-serif), Georgia, serif;
+  --font-devanagari: var(--font-tiro-devanagari), serif;
+
+  /* Fluid display sizes */
+  --text-display-xl: clamp(4rem, 12vw, 11rem);
+  --text-display-lg: clamp(2.5rem, 6vw, 6rem);
+  --text-display-md: clamp(2rem, 4vw, 3.5rem);
+
+  /* Animations */
+  --animate-marquee-left: marquee-left 30s linear infinite;
+  --animate-marquee-right: marquee-right 30s linear infinite;
+  --animate-blink: blink 1.2s ease-in-out infinite;
+
+  @keyframes marquee-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.15; }
+  }
+}
+
+/* ============================================================
+   BASE RESETS
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  background-color: #080808;
+  color: #f0ede8;
+  overflow-x: hidden;
+}
+
+/* Prevent scroll during preloader */
+body.is-loading {
+  overflow: hidden;
+}
+
+/* Text selection */
+::selection {
+  background-color: rgba(201, 168, 76, 0.2);
+  color: #f0ede8;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a84c;
+  border-radius: 1px;
+}
+
+/* ============================================================
+   LENIS SMOOTH SCROLL — required classes
+   ============================================================ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+/* Hide native cursor only on devices with fine pointer */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background-color: #c9a84c;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  transition:
+    width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.2s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(201, 168, 76, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  transition:
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.cursor-ring.is-expanded {
+  width: 72px;
+  height: 72px;
+  border-color: #c9a84c;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0;
+}
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background-color: #080808;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ============================================================
+   NOISE GRAIN OVERLAY
+   ============================================================ */
+.noise-overlay {
+  position: fixed;
+  inset: -200%;
+  width: 400%;
+  height: 400%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  animation: noise-shift 0.25s steps(2) infinite;
+}
+
+@keyframes noise-shift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-3%, -4%); }
+  50%  { transform: translate(-5%, 3%); }
+  75%  { transform: translate(3%, -5%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar-glass {
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  background-color: rgba(8, 8, 8, 0.8);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+}
+
+/* ============================================================
+   SECTION UTILITIES
+   ============================================================ */
+.section-padding {
+  padding-left: clamp(1.5rem, 5vw, 6rem);
+  padding-right: clamp(1.5rem, 5vw, 6rem);
+}
+
+/* Gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #c9a84c 0%, #e2c06e 50%, #a07830 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold horizontal rule */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c 40%, transparent);
+}
+
+/* Project card 3D tilt — transition for smooth return */
+.project-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+/* Marquee pause on hover */
+.marquee-track:hover .marquee-row {
+  animation-play-state: paused;
+}
+
+/* Reduced motion: disable all non-essential animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .noise-overlay {
+    animation: none;
+  }
+}
