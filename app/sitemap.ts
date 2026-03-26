@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 
 export const dynamic = 'force-static'
 
-const SITE_URL = 'https://abhishek202002.github.io'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://abhishek202002.github.io'
 
 /**
  * Generates /sitemap.xml — tells Google which pages exist and when they

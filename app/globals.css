@@ -263,4 +263,9 @@ html.lenis body {
   .noise-overlay {
     animation: none;
   }
+
+  /* Marquee: pause animation when reduced motion is preferred */
+  .marquee-row {
+    animation-play-state: paused !important;
+  }
 }

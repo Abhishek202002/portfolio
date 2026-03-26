@@ -80,8 +80,8 @@ export default function Navbar(): React.JSX.Element {
       )
       if (focusable.length === 0) return
 
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
+      const first = focusable[0]!
+      const last = focusable[focusable.length - 1]!
 
       if (e.shiftKey) {
         if (document.activeElement === first) {
@@ -113,6 +113,14 @@ export default function Navbar(): React.JSX.Element {
 
   return (
     <>
+      {/* Skip to main content link for keyboard navigation */}
+      <a
+        href="#main-content"
+        className="absolute -top-full left-0 z-[10001] bg-gold text-bg px-4 py-2 text-sm font-medium focus:top-0 transition-all"
+      >
+        Skip to main content
+      </a>
+
       <header
         className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
           scrolled ? 'navbar-glass' : 'bg-transparent'

@@ -14,7 +14,7 @@ import Contact from '@/components/sections/Contact'
  */
 export default function Home(): React.JSX.Element {
   return (
-    <main>
+    <main id="main-content">
       <ScrollProgress />
       <Navbar />
       <Hero />

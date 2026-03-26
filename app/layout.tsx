@@ -34,6 +34,7 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://abhishek202002.github.io'),
   title: 'Abhishek Yadav — Frontend Engineer',
   description:
     'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
@@ -53,15 +54,21 @@ export const metadata: Metadata = {
       'Frontend Engineer · React · TypeScript · Micro-Frontend · 4.5+ years at Fermion Infotech',
     type: 'website',
     locale: 'en_IN',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Abhishek Yadav — Frontend Engineer' }],
+    images: [
+      { url: '/og-image.svg', width: 1200, height: 630, alt: 'Abhishek Yadav — Frontend Engineer', type: 'image/svg+xml' },
+      { url: '/og-image.png', width: 1200, height: 630, alt: 'Abhishek Yadav — Frontend Engineer', type: 'image/png' },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Abhishek Yadav — Frontend Engineer',
     description: 'Frontend Engineer specialising in React and TypeScript.',
-    images: ['/og-image.svg'],
+    images: ['/og-image.png'],
   },
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: 'https://abhishek202002.github.io',
+  },
 }
 
 export const viewport: Viewport = {
@@ -95,6 +102,17 @@ const personSchema = {
   knowsAbout: ['React', 'TypeScript', 'Next.js', 'Micro-Frontend', 'Frontend Engineering'],
 }
 
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  url: 'https://abhishek202002.github.io',
+  name: 'Abhishek Yadav — Frontend Engineer',
+  description:
+    'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
+  author: personSchema,
+  datePublished: '2024-01-01',
+}
+
 // ─── Root Layout ──────────────────────────────────────────────────────────────
 
 interface RootLayoutProps {
@@ -111,6 +129,10 @@ export default function RootLayout({ children }: RootLayoutProps): React.JSX.Ele
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
         />
       </head>
       <body className="bg-bg text-warm font-sans overflow-x-hidden">
