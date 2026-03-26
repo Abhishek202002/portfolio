@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'motion/react'
-import { PERSONAL, STATS, type Stat } from '@/lib/data'
+import { PERSONAL, STATS } from '@/lib/data'
+import type { Stat } from '@/types'
 import TextReveal from '@/components/ui/TextReveal'
 
 // ─── Animated Counter ─────────────────────────────────────────────────────────

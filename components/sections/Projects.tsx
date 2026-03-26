@@ -4,7 +4,8 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { PROJECTS, type Project } from '@/lib/data'
+import { PROJECTS } from '@/lib/data'
+import type { Project } from '@/types'
 import { EASE_EXPO_OUT, SCROLL_TRIGGER_DEFAULTS } from '@/lib/animations'
 import MagneticButton from '@/components/ui/MagneticButton'
 
@@ -95,7 +96,7 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
 
       {/* Tech stack chips */}
       <div className="flex flex-wrap gap-2" role="list" aria-label="Technologies used">
-        {project.tech.slice(0, isEven ? 5 : 4).map((tech) => (
+        {project.tech.slice(0, isEven ? 5 : 4).map((tech: string) => (
           <span
             key={tech}
             role="listitem"

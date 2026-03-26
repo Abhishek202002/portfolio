@@ -3,6 +3,8 @@
  * Update this file to reflect new projects, skills, or experience.
  */
 
+import type { Stat, Project, SkillCategory, ExperienceEntry, NavLink } from '@/types'
+
 // ─── Personal ────────────────────────────────────────────────────────────────
 
 export const PERSONAL = {
@@ -23,13 +25,6 @@ products used by millions — from newsrooms to e-commerce to fundraising platfo
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
 
-export type Stat = {
-  value: number
-  suffix: string
-  label: string
-  decimals: number
-}
-
 export const STATS: Stat[] = [
   { value: 4.5, suffix: '+', label: 'Years Experience', decimals: 1 },
   { value: 4, suffix: '', label: 'Products Shipped', decimals: 0 },
@@ -38,18 +33,6 @@ export const STATS: Stat[] = [
 ]
 
 // ─── Projects ────────────────────────────────────────────────────────────────
-
-export type Project = {
-  id: string
-  number: string
-  title: string
-  subtitle: string
-  description: string
-  period: string
-  tech: string[]
-  url: string
-  accentColor: string
-}
 
 export const PROJECTS: Project[] = [
   {
@@ -132,12 +115,6 @@ export const PROJECTS: Project[] = [
 ]
 
 // ─── Skills ───────────────────────────────────────────────────────────────────
-
-export type SkillCategory = {
-  category: string
-  glyph: string
-  items: string[]
-}
 
 /** Pre-doubled arrays ensure seamless CSS marquee loop */
 export const SKILLS_MARQUEE_ROW_1: string[] = [
@@ -225,21 +202,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 
 // ─── Experience ───────────────────────────────────────────────────────────────
 
-export type ExperienceHighlight = {
-  text: string
-}
-
-export type ExperienceEntry = {
-  company: string
-  companyUrl: string
-  role: string
-  period: string
-  duration: string
-  location: string
-  description: string
-  highlights: ExperienceHighlight[]
-}
-
 export const EXPERIENCE: ExperienceEntry = {
   company: 'Fermion Infotech',
   companyUrl: 'https://fermioninfotech.com',
@@ -269,11 +231,6 @@ export const EXPERIENCE: ExperienceEntry = {
 }
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
-
-export type NavLink = {
-  label: string
-  href: string
-}
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Work', href: '#projects' },
