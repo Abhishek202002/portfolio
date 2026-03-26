@@ -77,6 +77,23 @@ export default function Contact(): React.JSX.Element {
         </MagneticButton>
       </motion.div>
 
+      {/* Phone */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, ease: EASE_EXPO_OUT_ARRAY, delay: 0.5 }}
+        className="mb-12"
+      >
+        <p className="text-xs text-warm-muted tracking-[0.2em] uppercase mb-3">Phone</p>
+        <a
+          href={`tel:${PERSONAL.phone}`}
+          className="font-serif text-lg md:text-xl text-warm hover:text-gold transition-colors duration-300"
+          aria-label={`Call ${PERSONAL.phone}`}
+        >
+          {PERSONAL.phone}
+        </a>
+      </motion.div>
+
       {/* Social links */}
       <motion.div
         className="flex flex-wrap gap-8 items-center"
@@ -119,6 +136,19 @@ export default function Contact(): React.JSX.Element {
             >
               ↗
             </span>
+          </a>
+        </MagneticButton>
+
+        <MagneticButton strength={30}>
+          <a
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/resume.pdf`}
+            download="Abhishek_Yadav_Resume.pdf"
+            className="flex items-center gap-2 text-sm text-gold border border-gold/40 hover:border-gold hover:bg-gold/5 transition-colors duration-300 rounded-full px-5 py-2.5"
+            aria-label="Download resume PDF"
+            data-cursor-expand
+          >
+            Download CV
+            <span aria-hidden="true">↓</span>
           </a>
         </MagneticButton>
 

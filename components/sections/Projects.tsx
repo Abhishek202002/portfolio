@@ -90,7 +90,7 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
       </div>
 
       {/* Description */}
-      <p className="text-sm text-warm-muted leading-relaxed line-clamp-3 flex-1">
+      <p className="text-sm text-warm-muted leading-relaxed flex-1">
         {project.description}
       </p>
 
@@ -171,7 +171,7 @@ export default function Projects(): React.JSX.Element {
     <section
       ref={sectionRef}
       id="projects"
-      className="section-padding py-24 md:py-36"
+      className="relative z-10 section-padding py-24 md:py-36"
       aria-labelledby="projects-heading"
     >
       {/* Section label */}

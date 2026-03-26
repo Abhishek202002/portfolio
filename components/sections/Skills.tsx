@@ -60,7 +60,7 @@ export default function Skills(): React.JSX.Element {
   return (
     <section
       id="skills"
-      className="py-24 md:py-36"
+      className="relative z-0 py-24 md:py-36"
       aria-labelledby="skills-heading"
     >
       {/* Section label */}
