@@ -30,6 +30,8 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return
+    // Instant response on move — disable transition while cursor is moving
+    cardRef.current.style.transition = 'none'
 
     const rect = cardRef.current.getBoundingClientRect()
     // Normalise cursor position within the card: -0.5 to +0.5
@@ -44,8 +46,9 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return
-    cardRef.current.style.transform =
-      'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
+    // Smooth spring-back when cursor leaves
+    cardRef.current.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+    cardRef.current.style.transform = ''
   }
 
   const isEven = index % 2 === 0
@@ -53,7 +56,7 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
   return (
     <article
       ref={cardRef}
-      className="project-card rounded-2xl bg-surface border border-border p-6 md:p-8 flex flex-col gap-6 group"
+      className="project-card relative z-10 rounded-2xl bg-surface border border-border p-8 md:p-10 flex flex-col gap-6 group"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       aria-label={`Project: ${project.title}`}
@@ -162,6 +165,10 @@ export default function Projects(): React.JSX.Element {
           start: SCROLL_TRIGGER_DEFAULTS.start,
           once: SCROLL_TRIGGER_DEFAULTS.once,
         },
+        onComplete: () => {
+          // Clear GSAP's inline transform so hover JS has full control
+          gsap.set(cards, { clearProps: 'all' })
+        },
       })
     },
     { scope: sectionRef }
@@ -171,7 +178,7 @@ export default function Projects(): React.JSX.Element {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative z-10 section-padding py-24 md:py-36"
+      className="relative z-20 section-padding py-32 md:py-44"
       aria-labelledby="projects-heading"
     >
       {/* Section label */}

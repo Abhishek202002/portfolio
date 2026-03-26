@@ -20,7 +20,7 @@ interface MarqueeRowProps {
 function MarqueeRow({ items, direction }: MarqueeRowProps): React.JSX.Element {
   return (
     <div
-      className="marquee-track overflow-hidden py-3 border-y border-border"
+      className="marquee-track overflow-hidden py-3 border-y border-border bg-bg"
       aria-hidden="true" // Decorative — the skill grid below is the accessible version
     >
       <ul
@@ -60,7 +60,7 @@ export default function Skills(): React.JSX.Element {
   return (
     <section
       id="skills"
-      className="relative z-0 py-24 md:py-36"
+      className="relative z-0 py-32 md:py-44 bg-bg"
       aria-labelledby="skills-heading"
     >
       {/* Section label */}
@@ -95,7 +95,7 @@ export default function Skills(): React.JSX.Element {
             <motion.div
               key={cat.category}
               variants={fadeUpVariants}
-              className="bg-surface border border-gold/20 rounded-xl p-6 space-y-4"
+              className="bg-surface border border-gold/20 rounded-xl p-8 md:p-10 space-y-5"
             >
               {/* Category header */}
               <div className="flex items-center gap-3">

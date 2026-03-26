@@ -20,7 +20,7 @@ export default function Experience(): React.JSX.Element {
     <section
       ref={sectionRef}
       id="experience"
-      className="section-padding py-24 md:py-36"
+      className="relative z-10 bg-bg section-padding py-32 md:py-44"
       aria-labelledby="experience-heading"
     >
       {/* Section label */}
@@ -105,11 +105,11 @@ export default function Experience(): React.JSX.Element {
           </div>
 
           {/* Highlights list */}
-          <ul className="pl-8 space-y-8" role="list">
+          <ul className="pl-8 space-y-10" role="list">
             {EXPERIENCE.highlights.map((highlight, i) => (
               <motion.li
                 key={i}
-                className="relative"
+                className="relative pr-2"
                 initial={{ opacity: 0, x: 16 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{
@@ -131,7 +131,7 @@ export default function Experience(): React.JSX.Element {
                   }}
                   aria-hidden="true"
                 />
-                <p className="text-sm md:text-base text-warm-muted leading-relaxed">
+                <p className="text-sm md:text-base text-warm-muted leading-[1.75]">
                   {highlight.text}
                 </p>
               </motion.li>

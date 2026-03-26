@@ -155,10 +155,9 @@ html.lenis body {
 }
 
 .cursor-ring.is-expanded {
-  width: 72px;
-  height: 72px;
-  border-color: #c9a84c;
-  mix-blend-mode: difference;
+  width: 52px;
+  height: 52px;
+  border-color: rgba(201, 168, 76, 0.8);
 }
 
 .cursor-dot.is-hidden,
@@ -217,8 +216,8 @@ html.lenis body {
    SECTION UTILITIES
    ============================================================ */
 .section-padding {
-  padding-left: clamp(1.5rem, 5vw, 6rem);
-  padding-right: clamp(1.5rem, 5vw, 6rem);
+  padding-left: clamp(1.5rem, 6vw, 7rem);
+  padding-right: clamp(1.5rem, 6vw, 7rem);
 }
 
 /* Gold gradient text */
@@ -235,11 +234,14 @@ html.lenis body {
   background: linear-gradient(90deg, transparent, #c9a84c 40%, transparent);
 }
 
-/* Project card 3D tilt — transition for smooth return */
+/* Project card 3D tilt */
 .project-card {
   transform-style: preserve-3d;
-  transition: transform 0.15s ease, box-shadow 0.4s ease;
-  will-change: transform;
+  box-shadow: none;
+  transition: box-shadow 0.4s ease;
+  /* transform transition is set dynamically in JS:
+     - 'none' while cursor is moving (instant response)
+     - 'transform 0.6s cubic-bezier(0.16,1,0.3,1)' on mouse leave (spring back) */
 }
 
 /* Marquee pause on hover */

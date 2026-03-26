@@ -25,7 +25,7 @@ export default function Contact(): React.JSX.Element {
     <section
       ref={sectionRef}
       id="contact"
-      className="section-padding py-24 md:py-40"
+      className="relative z-10 bg-bg section-padding py-32 md:py-44"
       aria-labelledby="contact-heading"
     >
       {/* Section label */}

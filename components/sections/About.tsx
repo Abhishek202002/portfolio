@@ -66,7 +66,7 @@ export default function About(): React.JSX.Element {
   return (
     <section
       id="about"
-      className="section-padding py-24 md:py-36"
+      className="relative z-10 bg-bg section-padding py-32 md:py-44"
       aria-labelledby="about-heading"
     >
       {/* Section label */}
