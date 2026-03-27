@@ -71,5 +71,5 @@ export const fadeInVariants: Variants = {
 
 // ─── Duration Constants ───────────────────────────────────────────────────────
 
-export const PRELOADER_DURATION_MS = 2800 as const
+export const PRELOADER_DURATION_MS = 2200 as const
 export const SCRAMBLE_DURATION_FRAMES = 55 as const

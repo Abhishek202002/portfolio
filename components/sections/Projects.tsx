@@ -27,13 +27,19 @@ interface ProjectCardProps {
  */
 function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
   const cardRef = useRef<HTMLDivElement>(null)
+  // Cache rect on mouseenter to avoid getBoundingClientRect on every mousemove (forced reflow)
+  const rectCache = useRef<DOMRect | null>(null)
+
+  const handleMouseEnter = () => {
+    rectCache.current = cardRef.current?.getBoundingClientRect() ?? null
+  }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
+    if (!cardRef.current || !rectCache.current) return
     // Instant response on move — disable transition while cursor is moving
     cardRef.current.style.transition = 'none'
 
-    const rect = cardRef.current.getBoundingClientRect()
+    const rect = rectCache.current
     // Normalise cursor position within the card: -0.5 to +0.5
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
@@ -46,6 +52,7 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return
+    rectCache.current = null
     // Smooth spring-back when cursor leaves
     cardRef.current.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
     cardRef.current.style.transform = ''
@@ -57,6 +64,7 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
     <article
       ref={cardRef}
       className="project-card relative z-10 rounded-2xl bg-surface border border-border p-8 md:p-10 flex flex-col gap-6 group"
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       aria-label={`Project: ${project.title}`}

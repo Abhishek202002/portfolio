@@ -34,7 +34,7 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://abhishek202002.github.io'),
+  metadataBase: new URL('https://abhishek202002.github.io/portfolio'),
   title: 'Abhishek Yadav — Frontend Engineer',
   description:
     'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: {
-    canonical: 'https://abhishek202002.github.io',
+    canonical: 'https://abhishek202002.github.io/portfolio/',
   },
 }
 
@@ -80,7 +80,7 @@ export const viewport: Viewport = {
 
 // ─── Structured Data ──────────────────────────────────────────────────────────
 
-const SITE_URL = 'https://abhishek202002.github.io'
+const SITE_URL = 'https://abhishek202002.github.io/portfolio'
 
 const personSchema = {
   '@context': 'https://schema.org',
