@@ -64,6 +64,7 @@ export default function Contact(): React.JSX.Element {
             href={`mailto:${PERSONAL.email}`}
             className="inline-block font-serif text-xl md:text-2xl xl:text-3xl text-warm hover:text-gold transition-colors duration-300 group"
             aria-label={`Send email to ${PERSONAL.email}`}
+            title={`Send email to ${PERSONAL.email}`}
             data-cursor-expand
           >
             {PERSONAL.email}
@@ -89,6 +90,7 @@ export default function Contact(): React.JSX.Element {
           href={`tel:${PERSONAL.phone}`}
           className="font-serif text-lg md:text-xl text-warm hover:text-gold transition-colors duration-300"
           aria-label={`Call ${PERSONAL.phone}`}
+          title={`Call ${PERSONAL.phone}`}
         >
           {PERSONAL.phone}
         </a>
@@ -108,6 +110,7 @@ export default function Contact(): React.JSX.Element {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-warm-muted hover:text-gold transition-colors duration-300 group border border-border hover:border-gold/40 rounded-full px-5 py-2.5"
             aria-label="View LinkedIn profile (opens in new tab)"
+            title="View LinkedIn profile"
             data-cursor-expand
           >
             LinkedIn
@@ -127,6 +130,7 @@ export default function Contact(): React.JSX.Element {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-warm-muted hover:text-gold transition-colors duration-300 group border border-border hover:border-gold/40 rounded-full px-5 py-2.5"
             aria-label="View GitHub profile (opens in new tab)"
+            title="View GitHub profile"
             data-cursor-expand
           >
             GitHub
@@ -145,6 +149,7 @@ export default function Contact(): React.JSX.Element {
             download="Abhishek_Yadav_Resume.pdf"
             className="flex items-center gap-2 text-sm text-gold border border-gold/40 hover:border-gold hover:bg-gold/5 transition-colors duration-300 rounded-full px-5 py-2.5"
             aria-label="Download resume PDF"
+            title="Download resume PDF"
             data-cursor-expand
           >
             Download CV

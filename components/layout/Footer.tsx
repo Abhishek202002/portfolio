@@ -32,6 +32,7 @@ export default function Footer(): React.JSX.Element {
           onClick={handleBackToTop}
           className="text-sm text-warm-muted hover:text-gold transition-colors duration-300 flex items-center gap-2 group focus:outline-none focus-visible:ring-1 focus-visible:ring-gold rounded"
           aria-label="Scroll back to top of page"
+          title="Scroll back to top of page"
           data-cursor-expand
         >
           Back to top

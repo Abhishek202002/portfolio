@@ -136,6 +136,7 @@ export default function Navbar(): React.JSX.Element {
             onClick={(e) => { e.preventDefault(); getLenis()?.scrollTo(0, { duration: 1.6 }) }}
             className="font-serif text-2xl text-gold-gradient font-normal tracking-wide select-none"
             aria-label={`${PERSONAL.name} — scroll to top`}
+            title="Scroll to top"
           >
             {PERSONAL.initials}
           </a>
@@ -154,6 +155,7 @@ export default function Navbar(): React.JSX.Element {
                     }`}
                     aria-current={isActive ? 'page' : undefined}
                     data-cursor-expand
+                    title={`Navigate to ${link.label}`}
                   >
                     {link.label}
                     {/* Underline — visible when active or hovered */}
@@ -176,6 +178,7 @@ export default function Navbar(): React.JSX.Element {
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
+            title={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             <motion.span
               className="block h-px w-6 bg-warm origin-center"
@@ -225,6 +228,7 @@ export default function Navbar(): React.JSX.Element {
                         isActive ? 'text-gold' : 'text-warm hover:text-gold'
                       }`}
                       aria-current={isActive ? 'page' : undefined}
+                      title={`Navigate to ${link.label}`}
                     >
                       {link.label}
                     </a>
@@ -241,6 +245,7 @@ export default function Navbar(): React.JSX.Element {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
               aria-label="Close navigation menu"
+              title="Close navigation menu"
             >
               Close ✕
             </motion.button>
