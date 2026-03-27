@@ -4,6 +4,8 @@ import './globals.css'
 import Noise from '@/components/ui/Noise'
 import Preloader from '@/components/ui/Preloader'
 import Providers from '@/components/layout/Providers'
+import { SITE_URL } from '@/lib/config'
+import { PERSONAL } from '@/lib/data'
 
 // ─── Font configuration ───────────────────────────────────────────────────────
 
@@ -34,7 +36,7 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://abhishek202002.github.io/portfolio'),
+  metadataBase: new URL(SITE_URL),
   title: 'Abhishek Yadav — Frontend Engineer',
   description:
     'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
     'Mumbai',
     'India',
   ],
-  authors: [{ name: 'Abhishek Yadav', url: 'https://github.com/Abhishek202002' }],
+  authors: [{ name: PERSONAL.name, url: PERSONAL.github }],
   openGraph: {
     title: 'Abhishek Yadav — Frontend Engineer',
     description:
@@ -67,7 +69,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: {
-    canonical: 'https://abhishek202002.github.io/portfolio/',
+    canonical: SITE_URL,
   },
 }
 
@@ -80,19 +82,17 @@ export const viewport: Viewport = {
 
 // ─── Structured Data ──────────────────────────────────────────────────────────
 
-const SITE_URL = 'https://abhishek202002.github.io/portfolio'
-
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': `${SITE_URL}/#person`,
-  name: 'Abhishek Yadav',
+  name: PERSONAL.name,
   url: SITE_URL,
-  jobTitle: 'Frontend Engineer',
-  email: 'ay0677241@gmail.com',
+  jobTitle: PERSONAL.role,
+  email: PERSONAL.email,
   worksFor: {
     '@type': 'Organization',
-    name: 'Fermion Infotech',
+    name: PERSONAL.company,
     url: 'https://fermioninfotech.com',
   },
   address: {
@@ -101,8 +101,8 @@ const personSchema = {
     addressCountry: 'IN',
   },
   sameAs: [
-    'https://www.linkedin.com/in/ay-abhishek-yadav',
-    'https://github.com/Abhishek202002',
+    PERSONAL.linkedin,
+    PERSONAL.github,
   ],
   knowsAbout: ['React', 'TypeScript', 'Next.js', 'Micro-Frontend', 'Frontend Engineering'],
 }

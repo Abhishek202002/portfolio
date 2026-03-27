@@ -2,6 +2,7 @@
 
 import { PERSONAL } from '@/lib/data'
 import { getLenis } from '@/lib/lenis'
+import { LENIS_SCROLL_TOP_DURATION, LENIS_EASING } from '@/lib/animations'
 
 /**
  * Footer — minimal bottom bar with copyright and back-to-top.
@@ -12,7 +13,7 @@ export default function Footer(): React.JSX.Element {
     e.preventDefault()
     const lenis = getLenis()
     if (lenis) {
-      lenis.scrollTo(0, { duration: 2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) })
+      lenis.scrollTo(0, { duration: LENIS_SCROLL_TOP_DURATION, easing: LENIS_EASING })
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }

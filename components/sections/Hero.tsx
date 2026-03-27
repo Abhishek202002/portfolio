@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { PERSONAL } from '@/lib/data'
 import { PRELOADER_DURATION_MS, EASE_EXPO_OUT_ARRAY } from '@/lib/animations'
+import { RESUME_FILENAME } from '@/lib/config'
 import { useTextScramble } from '@/hooks/useTextScramble'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
@@ -103,7 +104,7 @@ export default function Hero(): React.JSX.Element {
 
         <motion.a
           href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/resume.pdf`}
-          download="Abhishek_Yadav_Resume.pdf"
+          download={RESUME_FILENAME}
           className="mt-8 inline-flex items-center gap-2.5 text-xs tracking-[0.2em] uppercase text-gold border border-gold/40 hover:border-gold hover:bg-gold/5 transition-colors duration-300 rounded-full px-6 py-3"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

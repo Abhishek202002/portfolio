@@ -6,6 +6,7 @@ import { motion } from 'motion/react'
 import { PERSONAL } from '@/lib/data'
 import MagneticButton from '@/components/ui/MagneticButton'
 import { EASE_EXPO_OUT_ARRAY } from '@/lib/animations'
+import { RESUME_FILENAME } from '@/lib/config'
 
 /**
  * Contact — closing CTA section.
@@ -146,7 +147,7 @@ export default function Contact(): React.JSX.Element {
         <MagneticButton strength={30}>
           <a
             href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/resume.pdf`}
-            download="Abhishek_Yadav_Resume.pdf"
+            download={RESUME_FILENAME}
             className="flex items-center gap-2 text-sm text-gold border border-gold/40 hover:border-gold hover:bg-gold/5 transition-colors duration-300 rounded-full px-5 py-2.5"
             aria-label="Download resume PDF"
             title="Download resume PDF"

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { PERSONAL, NAV_LINKS } from '@/lib/data'
 import { getLenis } from '@/lib/lenis'
-import { EASE_EXPO_OUT_ARRAY } from '@/lib/animations'
+import { EASE_EXPO_OUT_ARRAY, LENIS_DURATION, LENIS_EASING } from '@/lib/animations'
 
 const SCROLL_THRESHOLD = 60
 
@@ -105,7 +105,7 @@ export default function Navbar(): React.JSX.Element {
     setMenuOpen(false)
     const lenis = getLenis()
     if (lenis) {
-      lenis.scrollTo(href, { duration: 1.4, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) })
+      lenis.scrollTo(href, { duration: LENIS_DURATION, easing: LENIS_EASING })
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
     }

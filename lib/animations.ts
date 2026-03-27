@@ -73,3 +73,17 @@ export const fadeInVariants: Variants = {
 
 export const PRELOADER_DURATION_MS = 2200 as const
 export const SCRAMBLE_DURATION_FRAMES = 55 as const
+
+// ─── Lenis Scroll Constants ───────────────────────────────────────────────────
+
+/** Standard smooth-scroll duration (seconds) used for anchor navigation */
+export const LENIS_DURATION = 1.4 as const
+
+/** Duration (seconds) for "back to top" scrolls (longer = more cinematic) */
+export const LENIS_SCROLL_TOP_DURATION = 2 as const
+
+/**
+ * Lenis easing — expo out curve.
+ * Shared across SmoothScroll initialisation, Navbar nav clicks, and Footer back-to-top.
+ */
+export const LENIS_EASING = (t: number): number => Math.min(1, 1.001 - Math.pow(2, -10 * t))

@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/config'
 
 export const dynamic = 'force-static'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://abhishek202002.github.io/portfolio'
 
 /**
  * Generates /robots.txt — tells search engine crawlers what to index.

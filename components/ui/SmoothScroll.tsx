@@ -5,6 +5,7 @@ import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { setLenis, destroyLenis } from '@/lib/lenis'
+import { LENIS_DURATION, LENIS_EASING } from '@/lib/animations'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -29,8 +30,8 @@ export default function SmoothScroll({ children }: SmoothScrollProps): React.JSX
     const lenis = new Lenis({
       // Disabled so GSAP's ticker drives the RAF — prevents double-loop jank
       autoRaf: false,
-      duration: 1.4,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: LENIS_DURATION,
+      easing: LENIS_EASING,
       smoothWheel: true,
       wheelMultiplier: 0.85,
       touchMultiplier: 1.5,
