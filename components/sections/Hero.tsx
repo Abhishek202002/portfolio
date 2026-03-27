@@ -113,6 +113,7 @@ export default function Hero(): React.JSX.Element {
             ease: EASE_EXPO_OUT_ARRAY,
           }}
           aria-label="Download resume PDF"
+          title="Download Abhishek Yadav's resume PDF"
         >
           Download CV
           <span aria-hidden="true">↓</span>

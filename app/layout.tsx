@@ -80,15 +80,20 @@ export const viewport: Viewport = {
 
 // ─── Structured Data ──────────────────────────────────────────────────────────
 
+const SITE_URL = 'https://abhishek202002.github.io'
+
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${SITE_URL}/#person`,
   name: 'Abhishek Yadav',
-  url: 'https://abhishek202002.github.io',
+  url: SITE_URL,
   jobTitle: 'Frontend Engineer',
+  email: 'ay0677241@gmail.com',
   worksFor: {
     '@type': 'Organization',
     name: 'Fermion Infotech',
+    url: 'https://fermioninfotech.com',
   },
   address: {
     '@type': 'PostalAddress',
@@ -105,12 +110,14 @@ const personSchema = {
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  url: 'https://abhishek202002.github.io',
+  '@id': `${SITE_URL}/#webpage`,
+  url: SITE_URL,
   name: 'Abhishek Yadav — Frontend Engineer',
   description:
     'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
-  author: personSchema,
+  author: { '@id': `${SITE_URL}/#person` },
   datePublished: '2024-01-01',
+  isPartOf: { '@id': SITE_URL },
 }
 
 // ─── Root Layout ──────────────────────────────────────────────────────────────

@@ -59,6 +59,7 @@ export default function Experience(): React.JSX.Element {
               rel="noopener noreferrer"
               className="hover:text-gold transition-colors duration-300 group"
               aria-label={`Visit ${EXPERIENCE.company} website (opens in new tab)`}
+              title={`Visit ${EXPERIENCE.company} website`}
               data-cursor-expand
             >
               {EXPERIENCE.company}
