@@ -46,8 +46,11 @@ export const metadata: Metadata = {
     'TypeScript',
     'Next.js',
     'Micro-Frontend',
+    'JavaScript',
+    'Web Developer',
+    'Portfolio',
+    'Frontend Developer India',
     'Mumbai',
-    'India',
   ],
   authors: [{ name: PERSONAL.name, url: PERSONAL.github }],
   openGraph: {
@@ -57,15 +60,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     images: [
-      { url: '/og-image.png', width: 1200, height: 630, alt: 'Abhishek Yadav — Frontend Engineer', type: 'image/png' },
+      {
+        url: `${SITE_URL}og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Abhishek Yadav — Frontend Engineer',
+        type: 'image/png',
+      },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Abhishek Yadav — Frontend Engineer',
     description: 'Frontend Engineer specialising in React and TypeScript.',
-    images: ['/og-image.png'],
+    images: [`${SITE_URL}og-image.png`],
   },
+  referrer: 'strict-origin-when-cross-origin',
   robots: { index: true, follow: true },
   verification: {
     google: 'cn9HpP3dymS9JJlyIMKiQeDkXy7vfL3DbjqAiZrE2bI',
@@ -91,6 +101,9 @@ const personSchema = {
   name: PERSONAL.name,
   url: SITE_URL,
   jobTitle: PERSONAL.role,
+  description:
+    'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture with 4+ years of experience building performant web applications.',
+  image: `${SITE_URL}og-image.png`,
   email: PERSONAL.email,
   worksFor: {
     '@type': 'Organization',
@@ -102,11 +115,17 @@ const personSchema = {
     addressLocality: 'Mumbai',
     addressCountry: 'IN',
   },
-  sameAs: [
-    PERSONAL.linkedin,
-    PERSONAL.github,
+  sameAs: [PERSONAL.linkedin, PERSONAL.github],
+  knowsAbout: [
+    'React',
+    'TypeScript',
+    'Next.js',
+    'JavaScript',
+    'Micro-Frontend',
+    'Frontend Engineering',
+    'Tailwind CSS',
+    'Web Performance',
   ],
-  knowsAbout: ['React', 'TypeScript', 'Next.js', 'Micro-Frontend', 'Frontend Engineering'],
 }
 
 const webPageSchema = {
@@ -117,9 +136,34 @@ const webPageSchema = {
   name: 'Abhishek Yadav — Frontend Engineer',
   description:
     'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
+  inLanguage: 'en',
+  mainEntity: { '@id': `${SITE_URL}/#person` },
   author: { '@id': `${SITE_URL}/#person` },
   datePublished: '2024-01-01',
-  isPartOf: { '@id': SITE_URL },
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+}
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: 'Abhishek Yadav — Frontend Engineer',
+  description: 'Portfolio of Abhishek Yadav, Frontend Engineer based in Mumbai, India.',
+  inLanguage: 'en',
+  publisher: { '@id': `${SITE_URL}/#person` },
+}
+
+const profilePageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${SITE_URL}/#profilepage`,
+  url: SITE_URL,
+  name: 'Abhishek Yadav — Frontend Engineer',
+  mainEntity: { '@id': `${SITE_URL}/#person` },
+  dateCreated: '2024-01-01',
+  dateModified: new Date().toISOString().split('T')[0],
+  inLanguage: 'en',
 }
 
 // ─── Root Layout ──────────────────────────────────────────────────────────────
@@ -142,6 +186,14 @@ export default function RootLayout({ children }: RootLayoutProps): React.JSX.Ele
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
         />
       </head>
       <body className="bg-bg text-warm font-sans overflow-x-hidden">

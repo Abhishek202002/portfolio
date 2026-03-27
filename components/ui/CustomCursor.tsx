@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 /** CSS selector for elements that trigger the cursor ring expansion */
 const INTERACTIVE_SELECTOR = 'a, button, label, input, textarea, [data-cursor-expand]'
@@ -26,17 +27,10 @@ const RING_LERP = 0.1
 export default function CustomCursor(): React.JSX.Element | null {
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
-  const [isPointerFine, setIsPointerFine] = useState(false)
-
-  // Mount guard — prevents SSR render and determines pointer type
-  useEffect(() => {
-    setMounted(true)
-    setIsPointerFine(window.matchMedia('(pointer: fine)').matches)
-  }, [])
+  const isPointerFine = useMediaQuery('(pointer: fine)')
 
   useEffect(() => {
-    if (!mounted || !isPointerFine) return
+    if (!isPointerFine) return
 
     let mouseX = 0
     let mouseY = 0
@@ -44,12 +38,35 @@ export default function CustomCursor(): React.JSX.Element | null {
     let dotY = 0
     let ringX = 0
     let ringY = 0
-    let rafId: number
+    let rafId = 0
+    let isIdle = false
+    let idleTimer: ReturnType<typeof setTimeout>
 
-    // Track raw mouse position
+    const startLoop = () => {
+      if (!rafId) rafId = requestAnimationFrame(tick)
+    }
+
+    const stopLoop = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId)
+        rafId = 0
+      }
+    }
+
+    // Track raw mouse position — restart loop if idle
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
+
+      if (isIdle) {
+        isIdle = false
+        startLoop()
+      }
+
+      clearTimeout(idleTimer)
+      idleTimer = setTimeout(() => {
+        isIdle = true
+      }, 150)
     }
 
     // Expand ring when hovering interactive elements
@@ -97,6 +114,12 @@ export default function CustomCursor(): React.JSX.Element | null {
         ringRef.current.style.top = `${ringY}px`
       }
 
+      // Stop the loop once idle and the ring has settled (ring is the slowest)
+      if (isIdle && Math.abs(mouseX - ringX) < 0.5 && Math.abs(mouseY - ringY) < 0.5) {
+        rafId = 0
+        return
+      }
+
       rafId = requestAnimationFrame(tick)
     }
 
@@ -105,7 +128,7 @@ export default function CustomCursor(): React.JSX.Element | null {
     document.addEventListener('mouseout', onMouseOut)
     document.addEventListener('mouseleave', onMouseLeave)
     document.addEventListener('mouseenter', onMouseEnter)
-    rafId = requestAnimationFrame(tick)
+    startLoop()
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
@@ -113,12 +136,13 @@ export default function CustomCursor(): React.JSX.Element | null {
       document.removeEventListener('mouseout', onMouseOut)
       document.removeEventListener('mouseleave', onMouseLeave)
       document.removeEventListener('mouseenter', onMouseEnter)
-      cancelAnimationFrame(rafId)
+      clearTimeout(idleTimer)
+      stopLoop()
     }
-  }, [mounted, isPointerFine])
+  }, [isPointerFine])
 
   // Do not render on SSR or touch devices
-  if (!mounted || !isPointerFine) return null
+  if (!isPointerFine) return null
 
   return (
     <>

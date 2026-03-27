@@ -19,7 +19,7 @@ const eslintConfig = defineConfig([
       'react/react-in-jsx-scope': 'off',
     },
   },
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'convert-og-image.js']),
 ])
 
 export default eslintConfig

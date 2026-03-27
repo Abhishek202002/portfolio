@@ -48,6 +48,13 @@ export default function Preloader(): React.JSX.Element {
     const timer = setTimeout(() => {
       setIsVisible(false)
       document.body.classList.remove('is-loading')
+
+      // Move focus to main content for keyboard/screen-reader users
+      const main = document.getElementById('main-content')
+      if (main) {
+        main.setAttribute('tabindex', '-1')
+        main.focus({ preventScroll: true })
+      }
     }, PRELOADER_DURATION_MS)
     return () => clearTimeout(timer)
   }, [])
@@ -139,6 +146,9 @@ export default function Preloader(): React.JSX.Element {
         ctx.fillText(DEVANAGARI_TEXT, TEXT_X, TEXT_Y)
         ctx.restore()
       }
+
+      // Stop requesting frames once fill animation is complete
+      if (progress >= 1) return
 
       rafRef.current = requestAnimationFrame(drawFrame)
     }

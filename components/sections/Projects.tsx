@@ -31,6 +31,8 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
   const rectCache = useRef<DOMRect | null>(null)
 
   const handleMouseEnter = () => {
+    // Skip 3D tilt on touch devices — tap/long-press feels wrong with tilt
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return
     rectCache.current = cardRef.current?.getBoundingClientRect() ?? null
   }
 

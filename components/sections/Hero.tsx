@@ -29,13 +29,11 @@ export default function Hero(): React.JSX.Element {
   const [scrambleActive, setScrambleActive] = useState(false)
   const prefersReduced = useReducedMotion()
 
-  // Trigger scramble shortly after the preloader finishes
+  // Trigger scramble shortly after the preloader finishes.
+  // Reduced-motion users see the final text immediately (0ms delay).
   useEffect(() => {
-    if (prefersReduced) {
-      setScrambleActive(true)
-      return
-    }
-    const timer = setTimeout(() => setScrambleActive(true), SCRAMBLE_START_DELAY)
+    const delay = prefersReduced ? 0 : SCRAMBLE_START_DELAY
+    const timer = setTimeout(() => setScrambleActive(true), delay)
     return () => clearTimeout(timer)
   }, [prefersReduced])
 
