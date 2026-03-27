@@ -53,11 +53,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Abhishek Yadav — Frontend Engineer',
     description:
-      'Frontend Engineer · React · TypeScript · Micro-Frontend · 4.5+ years at Fermion Infotech',
+      'Frontend Engineer specialising in React, TypeScript & Micro-Frontend architecture. 4.5+ years building performant web apps at Fermion Infotech, Mumbai.',
     type: 'website',
     locale: 'en_IN',
     images: [
-      { url: '/og-image.svg', width: 1200, height: 630, alt: 'Abhishek Yadav — Frontend Engineer', type: 'image/svg+xml' },
       { url: '/og-image.png', width: 1200, height: 630, alt: 'Abhishek Yadav — Frontend Engineer', type: 'image/png' },
     ],
   },
