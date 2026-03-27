@@ -124,6 +124,7 @@ function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Element {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm text-gold hover:text-gold-light transition-colors duration-300 group/link"
             aria-label={`Visit ${project.title} live site (opens in new tab)`}
+            title={`Visit ${project.title} live site`}
             data-cursor-expand
           >
             Visit Live Site

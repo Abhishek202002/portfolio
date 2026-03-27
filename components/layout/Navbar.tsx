@@ -117,6 +117,8 @@ export default function Navbar(): React.JSX.Element {
       <a
         href="#main-content"
         className="absolute -top-full left-0 z-[10001] bg-gold text-bg px-4 py-2 text-sm font-medium focus:top-0 transition-all"
+        aria-label="Skip to main content"
+        title="Skip to main content"
       >
         Skip to main content
       </a>

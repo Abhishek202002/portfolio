@@ -112,6 +112,7 @@ export default function About(): React.JSX.Element {
               rel="noopener noreferrer"
               className="text-sm text-gold hover:text-gold-light transition-colors duration-300 underline underline-offset-4 decoration-gold/30 hover:decoration-gold"
               aria-label="View Abhishek's LinkedIn profile (opens in new tab)"
+              title="View Abhishek's LinkedIn profile"
               data-cursor-expand
             >
               LinkedIn ↗
@@ -122,6 +123,7 @@ export default function About(): React.JSX.Element {
               rel="noopener noreferrer"
               className="text-sm text-gold hover:text-gold-light transition-colors duration-300 underline underline-offset-4 decoration-gold/30 hover:decoration-gold"
               aria-label="View Abhishek's GitHub profile (opens in new tab)"
+              title="View Abhishek's GitHub profile"
               data-cursor-expand
             >
               GitHub ↗
