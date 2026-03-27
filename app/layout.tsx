@@ -4,8 +4,14 @@ import './globals.css'
 import Noise from '@/components/ui/Noise'
 import Preloader from '@/components/ui/Preloader'
 import Providers from '@/components/layout/Providers'
-import { SITE_URL } from '@/lib/config'
+import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from '@/lib/config'
 import { PERSONAL } from '@/lib/data'
+import {
+  personSchema,
+  webPageSchema,
+  webSiteSchema,
+  profilePageSchema,
+} from '@/lib/schemas'
 
 // ─── Font configuration ───────────────────────────────────────────────────────
 
@@ -37,9 +43,8 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'Abhishek Yadav — Frontend Engineer',
-  description:
-    'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: [
     'Frontend Engineer',
     'React Developer',
@@ -54,9 +59,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: PERSONAL.name, url: PERSONAL.github }],
   openGraph: {
-    title: 'Abhishek Yadav — Frontend Engineer',
-    description:
-      'Frontend Engineer specialising in React, TypeScript & Micro-Frontend architecture. 4.5+ years building performant web apps at Fermion Infotech, Mumbai.',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: PERSONAL.name,
     type: 'website',
     locale: 'en_IN',
     images: [
@@ -71,8 +77,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Abhishek Yadav — Frontend Engineer',
-    description: 'Frontend Engineer specialising in React and TypeScript.',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: [`${SITE_URL}og-image.png`],
   },
   referrer: 'strict-origin-when-cross-origin',
@@ -90,80 +96,6 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
   width: 'device-width',
   initialScale: 1,
-}
-
-// ─── Structured Data ──────────────────────────────────────────────────────────
-
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': `${SITE_URL}/#person`,
-  name: PERSONAL.name,
-  url: SITE_URL,
-  jobTitle: PERSONAL.role,
-  description:
-    'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture with 4+ years of experience building performant web applications.',
-  image: `${SITE_URL}og-image.png`,
-  email: PERSONAL.email,
-  worksFor: {
-    '@type': 'Organization',
-    name: PERSONAL.company,
-    url: 'https://fermioninfotech.com',
-  },
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Mumbai',
-    addressCountry: 'IN',
-  },
-  sameAs: [PERSONAL.linkedin, PERSONAL.github],
-  knowsAbout: [
-    'React',
-    'TypeScript',
-    'Next.js',
-    'JavaScript',
-    'Micro-Frontend',
-    'Frontend Engineering',
-    'Tailwind CSS',
-    'Web Performance',
-  ],
-}
-
-const webPageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  '@id': `${SITE_URL}/#webpage`,
-  url: SITE_URL,
-  name: 'Abhishek Yadav — Frontend Engineer',
-  description:
-    'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.',
-  inLanguage: 'en',
-  mainEntity: { '@id': `${SITE_URL}/#person` },
-  author: { '@id': `${SITE_URL}/#person` },
-  datePublished: '2024-01-01',
-  isPartOf: { '@id': `${SITE_URL}/#website` },
-}
-
-const webSiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': `${SITE_URL}/#website`,
-  url: SITE_URL,
-  name: 'Abhishek Yadav — Frontend Engineer',
-  description: 'Portfolio of Abhishek Yadav, Frontend Engineer based in Mumbai, India.',
-  inLanguage: 'en',
-  publisher: { '@id': `${SITE_URL}/#person` },
-}
-
-const profilePageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  '@id': `${SITE_URL}/#profilepage`,
-  url: SITE_URL,
-  name: 'Abhishek Yadav — Frontend Engineer',
-  mainEntity: { '@id': `${SITE_URL}/#person` },
-  dateCreated: '2024-01-01',
-  dateModified: new Date().toISOString().split('T')[0],
-  inLanguage: 'en',
 }
 
 // ─── Root Layout ──────────────────────────────────────────────────────────────

@@ -8,5 +8,10 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://abhishek202002.github.io/portfolio/'
 
+/** SEO copy — single source of truth for metadata & schemas */
+export const SITE_TITLE = 'Abhishek Yadav — Frontend Engineer'
+export const SITE_DESCRIPTION =
+  'Frontend Engineer specialising in React, TypeScript, and Micro-Frontend architecture. 4+ years building performant, scalable web applications across fintech, e-commerce, and non-profit.'
+
 /** Resume PDF filename — used in Hero and Contact download links */
 export const RESUME_FILENAME = 'Abhishek_Yadav_Resume.pdf' as const
