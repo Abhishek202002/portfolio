@@ -178,6 +178,16 @@ html.lenis body {
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
+  /* CSS-only fallback: auto-hide preloader after 3s even if JS hasn't removed it.
+     Ensures Googlebot's renderer sees content, not a black screen. */
+  animation: preloader-fallback 0s 3s forwards;
+}
+
+@keyframes preloader-fallback {
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 
 /* ============================================================

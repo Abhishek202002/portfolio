@@ -44,7 +44,7 @@ export const webPageSchema = {
   inLanguage: 'en',
   mainEntity: { '@id': `${SITE_URL}/#person` },
   author: { '@id': `${SITE_URL}/#person` },
-  datePublished: '2024-01-01',
+  datePublished: '2026-03-26T00:00:00+05:30',
   isPartOf: { '@id': `${SITE_URL}/#website` },
 }
 
@@ -66,7 +66,7 @@ export const profilePageSchema = {
   url: SITE_URL,
   name: SITE_TITLE,
   mainEntity: { '@id': `${SITE_URL}/#person` },
-  dateCreated: '2024-01-01',
-  dateModified: new Date().toISOString().split('T')[0],
+  dateCreated: '2026-03-26T00:00:00+05:30',
+  dateModified: new Date().toISOString(),
   inLanguage: 'en',
 }
